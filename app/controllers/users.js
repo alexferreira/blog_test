@@ -36,6 +36,15 @@ exports.create = function (req, res) {
 }
 
 /**
+ * Logout
+ */
+
+exports.logout = function (req, res) {
+  req.logout()
+  res.redirect('/login')
+}
+
+/**
  * Find user by id
  */
 
