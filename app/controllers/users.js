@@ -64,6 +64,18 @@ exports.logout = function (req, res) {
 }
 
 /**
+ *  Show profile
+ */
+
+exports.show = function (req, res) {
+  var user = req.user
+  res.render('users/show', {
+    title: user.email,
+    user: user
+  })
+}
+
+/**
  * Find user by id
  */
 
