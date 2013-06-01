@@ -3,8 +3,7 @@
  * Module dependencies.
  */
 
-var mongoose = require('mongoose')
-  , middlewares = require('./middlewares')
+var mongoose = require('mongoose');
 
 module.exports = function (app, passport, auth) {
 
