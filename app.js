@@ -7,6 +7,7 @@ var express = require('express')
   , passport = require('passport')
   , env = process.env.NODE_ENV || 'development'
   , config = require('./config/config')[env]
+  , auth = require('./config/middlewares/authorization')
   , mongoose = require('mongoose')
   , modelsPath = __dirname + '/app/models'
 
@@ -32,3 +33,6 @@ require('./config/routes')(app, passport)
 var port = process.env.PORT || 3000
 app.listen(port)
 console.log('Express app started on port '+port)
+
+// expose app
+exports = module.exports = app
