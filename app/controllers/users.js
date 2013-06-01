@@ -36,6 +36,25 @@ exports.create = function (req, res) {
 }
 
 /**
+ * Show login form
+ */
+
+exports.login = function (req, res) {
+  res.render('users/login', {
+    title: 'Login',
+    message: req.flash('error')
+  })
+}
+
+/**
+ * Session
+ */
+
+exports.session = function (req, res) {
+  res.redirect('/')
+}
+
+/**
  * Logout
  */
 
