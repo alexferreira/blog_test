@@ -1,6 +1,7 @@
 {
   "name": "BlogTest",
   "version": "0.0.1",
+  "author": "Alex Ferreira <dev@alexferreira.eti.br>",
   "engines": {
     "node": ">=0.8.x"
   },
