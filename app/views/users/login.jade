@@ -1,0 +1,26 @@
+extends auth
+
+block auth
+  form.form-horizontal(action='/users/session', method='POST')
+    fieldset
+      #legend
+        legend. Login
+      
+      if (message.length)
+        .fade.in.alert.alert-block.alert-error
+          a.close(data-dismiss="alert", href="javascript:void(0)") x
+          = message
+      .control-group.offset3
+        label.control-label(for='email') Username
+        .controls
+          input#username.input-xlarge(type='text', name='email', placeholder='')
+      .control-group.offset3
+        label.control-label(for='password') Password
+        .controls
+          input#password.input-xlarge(type='password', name='password', placeholder='')
+      .control-group.offset3
+        .controls
+          button.btn.btn-success Login
+          &nbsp;
+          | or&nbsp;
+          a.show-signup(href="/signup") sign up
