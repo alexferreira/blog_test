@@ -5,6 +5,7 @@
 
 var express = require('express')
   , mongoStore = require('connect-mongo')(express)
+  , flash = require('connect-flash')
   , helpers = require('view-helpers')
 
 module.exports = function (app, config, passport) {
@@ -32,6 +33,9 @@ module.exports = function (app, config, passport) {
       })
     }))
 
+    // connect flash for flash messages
+    app.use(flash())
+    
     if (passport) {
       app.use(passport.initialize())
       app.use(passport.session())
