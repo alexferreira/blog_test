@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var mongoose = require('mongoose');
+var async = require('async');
 
 module.exports = function (app, passport, auth) {
 
