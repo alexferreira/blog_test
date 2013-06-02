@@ -1,0 +1,43 @@
+extends ../layouts/default
+
+block content
+  - var action = '/posts'
+  if (!post.isNew)
+    - action += '/'+post.id
+    - submit = 'Atualizar'
+  else
+    - submit = 'Salvar'
+
+  if (typeof errors !== 'undefined')
+    .fade.in.alert.alert-block.alert-error
+      a.close(data-dismiss="alert", href="javascript:void(0)") x
+      ul
+        each error in errors
+          li= error.type
+  
+  form(method="post", action=action, enctype="multipart/form-data")
+    if (!post.isNew)
+      input(type="hidden", name="_method", value="PUT")
+
+    .control-group
+      label.control-label(for='title') Title
+      .controls
+        input#title.span9(type='text', name="title", value=post.title, placeholder='Enter the title')
+
+    .control-group
+      label.control-label(for='desc') Body
+      .controls
+        textarea#editor.span9(type='text', rows="5", name="body", placeholder='Enter the post description')=post.body
+
+    .control-group
+      label.control-label(for='tags') Tags
+      .controls
+        input#tags.span9(type='text', name="tags", value=post.tags, placeholder='Enter the tags')
+    .clearfix
+    br
+    .clearfix
+    .control-group.clearfix
+      .controls
+        a.btn(href='/posts', title="cancel") Cancel
+        &nbsp;
+        button.btn.btn-primary(type='submit')=submit
