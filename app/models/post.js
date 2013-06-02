@@ -33,7 +33,6 @@ var PostSchema = new Schema({
   comments: [{
     email: {type : String, default : '', trim : true},
     body: { type : String, default : '' },
-    user: { type : Schema.ObjectId, ref : 'User' },
     createdAt: { type : Date, default : Date.now }
   }],
   tags: {type: [], get: getTags, set: setTags},
@@ -67,11 +66,10 @@ PostSchema.methods = {
    * @api private
    */
 
-  addComment: function (user, comment, cb) {
+  addComment: function (comment, cb) {
     this.comments.push({
       email: comment.email,
-      body: comment.body,
-      user: user._id
+      body: comment.body
     })
 
     this.save(cb)
