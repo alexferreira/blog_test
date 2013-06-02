@@ -1,40 +1,43 @@
 extends ../layouts/default
 
 block content
-  each post in posts
-    h2 
-      a.title(href='/posts/'+post._id, title=post.title)= post.title
+  if (posts.length)
+    each post in posts
+      h3 
+        a.title(href='/posts/'+post._id, title=post.title)= post.title
 
-    !=post.body
+      !=post.body
 
-    div
-      span Posted by 
-      = post.user.email
+      div
+        span Posted by 
+        = post.user.email
 
-    .row
-      .span8.tags
-        p
-        p
-          i.icon-user
-          |  by 
-          a(href=href='/users/'+post.user._id)= post.user.email
-          |  | 
-          i.icon-calendar
-          = formatDate(post.createdAt, "%b %d, %Y")
-          |  | 
-          i.icon-comment
-          a(href=href='/posts/'+post._id)  #{post.comments.length} Comentário(s)
-          |  | 
-          i.icon-tags
-          |  Tags :
-          if(post.tags)
-            each tag in post.tags.split(',')
-              a.label.label-info(href="/tags/"+tag) #{tag} 
+      .row
+        .span8.tags
+          p
+          p
+            i.icon-user
+            |  by 
+            a(href=href='/users/'+post.user._id)= post.user.email
+            |  | 
+            i.icon-calendar
+            = formatDate(post.createdAt, "%b %d, %Y")
+            |  | 
+            i.icon-comment
+            a(href=href='/posts/'+post._id)  #{post.comments.length} Comentário(s)
+            |  | 
+            i.icon-tags
+            |  Tags :
+            if(post.tags)
+              each tag in post.tags.split(',')
+                a.label.label-info(href="/tags/"+tag) #{tag} 
 
-    .clearfix
-    hr
+      .clearfix
+      hr
 
-  if (pages > 1)
-    .pagination
-      ul
-        != createPagination(pages, page)
+    if (pages > 1)
+      .pagination
+        ul
+          != createPagination(pages, page)
+  else
+    h2 Nehum post publicado
