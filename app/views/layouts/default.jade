@@ -1,0 +1,39 @@
+doctype 5
+html
+  include ../includes/head
+  body
+    include ../includes/header
+    .container
+      .row
+        .span9
+          block main
+          block content
+        .span3
+          .well.sidebar-nav
+            ul.nav.nav-list
+              li.nav-header Main
+                li.active
+                  a(href='/')
+                    i.icon-home
+                    | Home
+                li
+                  a(href='/posts/new')
+                    i.icon-edit
+                    | Adicionar post
+
+            ul.nav.nav-list
+              li.nav-header Tags
+                li
+                  .tags        
+                    each tag in tags
+                      a.label.label-info(href="/tags/"+tag._id) #{tag._id}
+
+            label Textbox with search icon
+            .input-append
+              input(type='text', name='')
+              span.add-on
+                i.icon-search
+
+      hr
+      include ../includes/footer
+    include ../includes/scripts
