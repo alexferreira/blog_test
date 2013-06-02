@@ -15,6 +15,7 @@ var PostSchema = new Schema({
   body: {type : String, default : '', trim : true},
   user: {type : Schema.ObjectId, ref : 'User'},
   comments: [{
+    email: {type : String, default : '', trim : true},
     body: { type : String, default : '' },
     user: { type : Schema.ObjectId, ref : 'User' },
     createdAt: { type : Date, default : Date.now }
@@ -35,5 +36,31 @@ PostSchema.path('body').validate(function (body) {
   return body.length > 0
 }, 'Post body cannot be blank');
 
+/**
+ * Methods
+ */
+
+PostSchema.methods = {
+
+  /**
+   * Add comment
+   *
+   * @param {User} user
+   * @param {Object} comment
+   * @param {Function} cb
+   * @api private
+   */
+
+  addComment: function (user, comment, cb) {
+    this.comments.push({
+      email: comment.email,
+      body: comment.body,
+      user: user._id
+    })
+
+    this.save(cb)
+  }
+
+}
 
 mongoose.model('Post', PostSchema)
