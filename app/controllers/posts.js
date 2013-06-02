@@ -52,3 +52,18 @@ exports.show = function(req, res){
     tags: req.tags
   })
 }
+
+/**
+ * Find post by id
+ */
+
+exports.post = function(req, res, next, id){
+  var User = mongoose.model('User')
+  
+  Post.findOne({ _id : id }).populate('user', 'email').populate('comments.user').exec(function (err, post) { 
+    if (err) return next(err)
+    if (!post) return next(new Error('Failed to load post ' + id))
+    req.post = post
+    next()
+  })
+}
