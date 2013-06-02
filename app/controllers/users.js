@@ -13,6 +13,7 @@ var mongoose = require('mongoose')
 exports.signup = function (req, res) {
   res.render('users/signup', {
     title: 'Sign up',
+    tags: req.tags,
     user: new User()
   })
 }
@@ -42,6 +43,7 @@ exports.create = function (req, res) {
 exports.login = function (req, res) {
   res.render('users/login', {
     title: 'Login',
+    tags: req.tags,
     message: req.flash('error')
   })
 }
@@ -71,7 +73,8 @@ exports.show = function (req, res) {
   var user = req.user
   res.render('users/show', {
     title: user.email,
-    user: user
+    user: user,
+    tags: req.tags
   })
 }
 
