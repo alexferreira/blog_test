@@ -7,7 +7,7 @@ var mongoose = require('mongoose')
   , Schema = mongoose.Schema
   , crypto = require('crypto')
   , _ = require('underscore')
-  , authTypes = ['local']
+  , authTypes = []
 
 var UserSchema = new Schema({
   email: 'string',
