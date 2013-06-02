@@ -51,11 +51,11 @@ module.exports = function (app, config, passport) {
     app.use(function (err, req, res, next) {
       if (~err.message.indexOf('not found')) return next()
       console.error(err.stack)
-      res.status(500).render('500')
+      res.status(500).render('500', { title: 'Internal error occured!' })
     })
 
     app.use(function (req, res, next) {
-      res.status(404).render('404', { url: req.originalUrl })
+      res.status(404).render('404', { title: 'Page not fount!', url: req.originalUrl })
     })
 
   })
