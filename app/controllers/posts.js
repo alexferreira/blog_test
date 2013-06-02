@@ -67,3 +67,36 @@ exports.post = function(req, res, next, id){
     next()
   })
 }
+
+/**
+ * Edit an post
+ */
+
+exports.edit = function (req, res) {
+  res.render('posts/edit', {
+    title: 'Editando '+req.post.title,
+    post: req.post,
+    tags: req.tags
+  })
+}
+
+/**
+ * Update post
+ */
+
+exports.update = function(req, res){
+  var post = req.post
+  post = _.extend(post, req.body)
+
+  post.save(function (err) {
+    if (err) {
+      res.render('posts/edit', {
+        title: 'Editando Post',
+        post: post,
+        errors: err.errors
+      })
+    } else {
+      res.redirect('/posts/'+post._id)
+    }
+  })
+}
