@@ -40,3 +40,15 @@ exports.create = function (req, res) {
     }
   })
 }
+
+/**
+ * View an post
+ */
+
+exports.show = function(req, res){
+  res.render('posts/show', {
+    title: req.post.title,
+    post: req.post,
+    tags: req.tags
+  })
+}
