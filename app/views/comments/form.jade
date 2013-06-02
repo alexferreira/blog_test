@@ -1,4 +1,9 @@
 form.form-vertical(method="post", action="/posts/#{post._id}/comments")
+  if (messages.length)
+    each message in messages
+      .fade.in.alert.alert-block.alert-error
+        a.close(data-dismiss="alert", href="javascript:void(0)") x
+        = message
   .control-group
     .controls
       input#username.span4(type='text', name='email', placeholder='Digite seu email')
