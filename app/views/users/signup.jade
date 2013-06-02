@@ -1,24 +1,23 @@
 extends auth
 
+block main
+  h2 Cadastro de Usuário
+
 block auth
   form.signup.form-horizontal(action="/users", method="post")
-    fieldset
-      #legend
-        legend. Signup
+    .control-group.offset2
+      label.control-label(for='email') Email
+      .controls
+        input#email(type='text', name="email", placeholder='Email', value=user.email)
 
-      .control-group.offset3
-        label.control-label(for='email') Email
-        .controls
-          input#email(type='text', name="email", placeholder='Email', value=user.email)
+    .control-group.offset2
+      label.control-label(for='password') Password
+      .controls
+        input#password(type='password', name="password", placeholder='Password')
 
-      .control-group.offset3
-        label.control-label(for='password') Password
-        .controls
-          input#password(type='password', name="password", placeholder='Password')
-
-      .control-group.offset3
-        .controls
-          button.btn.btn-primary(type='submit') Sign up
-          &nbsp;
-          | or&nbsp;
-          a.show-login(href="/login") login
+    .control-group.offset2
+      .controls
+        button.btn.btn-primary(type='submit') Enviar
+        &nbsp;
+        | or&nbsp;
+        a.show-login(href="/login") login
