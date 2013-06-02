@@ -55,7 +55,13 @@ module.exports = function (app, config, passport) {
     })
 
     app.use(function (req, res, next) {
-      res.status(404).render('404', { title: 'Page not fount!', url: req.originalUrl })
+      res.status(404).render('404', { 
+        title: 'Page not fount!', 
+        url: req.originalUrl,
+        tags: req.tags,
+        user: req.user,
+        isAuthenticated: req.isAuthenticated(),
+      })
     })
 
   })
