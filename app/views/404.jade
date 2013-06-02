@@ -1,0 +1,21 @@
+extends layouts/error
+
+block content
+  body
+    .hero-unit.center
+      h1
+        | Page Not Found
+      small
+        font(face='Tahoma', color='red') Error 404
+      br
+      p
+        | A página solicitada não pôde ser encontrado, entre em contato com o desenvolvedor ou tente novamente. 
+      p
+        | Use o botão 
+        strong voltar 
+        | para navegar até a página anterior
+      p
+        | Ou você pode simplesmente pressionar este botão para voltar para a home do blog.
+      a.btn.btn-large.btn-info(href='/')
+        i.icon-home.icon-white
+        | Ir para Home
