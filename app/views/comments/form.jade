@@ -1,0 +1,10 @@
+form.form-vertical(method="post", action="/posts/#{post._id}/comments")
+  .control-group
+    .controls
+      input#username.span4(type='text', name='email', placeholder='Digite seu email')
+  .control-group
+    .controls
+      textarea#comment.span4(type='text', rows="6", name="body", placeholder='Digite seu comentário')
+  button.btn.btn-primary(type='submit') 
+    <i class="icon-pencil icon-white"></i>
+    | Enviar
