@@ -39,5 +39,5 @@ module.exports = function (app, passport, auth) {
   app.post('/posts/:id/comments', comments.create)
 
   // tag routes
-  app.get('/tags/:tag', tags.index)
+  app.get('/tags/:tag', tags.filter)
 }
