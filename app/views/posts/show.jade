@@ -1,0 +1,47 @@
+extends ../layouts/default
+
+block main
+  h1
+    = post.title
+    small
+      form.form-inline.pull-right.confirm(action="/posts/"+post.id, method="post")
+        a.btn.btn-small(href='/posts/'+post._id+'/edit', title="edit") 
+          <i class="icon-edit"></i>
+          | Edit
+        &nbsp;
+        input(type="hidden", name="_method", value="DELETE")
+        button.btn.btn-danger.btn-small(type="submit") 
+          <i class="icon-trash icon-white"></i>
+          | delete
+
+block content
+  .row
+    .span9
+      !=post.body
+
+  .row
+    .span8.tags
+      p
+      p
+        i.icon-user
+        |  by 
+        a(href=href='/users/'+post.user._id)= post.user.email
+        |  | 
+        i.icon-calendar
+        = formatDate(post.createdAt, "%b %d, %Y")
+        |  | 
+        i.icon-comment
+        a(href=href='/posts/'+post._id)  #{post.comments.length} Comentário(s)
+        |  | 
+        i.icon-tags
+        |  Tags :
+        if(post.tags)
+          each tag in post.tags.split(',')
+            a.label.label-info(href="/tags/"+tag) #{tag} 
+  p
+    br
+    h3 Comentários
+    each comment in post.comments
+      include ../comments/comment
+      hr
+    include ../comments/form
