@@ -4,6 +4,7 @@
  */
 
 var express = require('express')
+  , fs = require('fs')
   , passport = require('passport')
   , env = process.env.NODE_ENV || 'development'
   , config = require('./config/config')[env]
@@ -14,7 +15,7 @@ var express = require('express')
 mongoose.connect(config.db)
 
 // Bootstrap models
-require('fs').readdirSync(modelsPath).forEach(function (file) {
+fs.readdirSync(modelsPath).forEach(function (file) {
   require(modelsPath+'/'+file)
 })
 
@@ -27,7 +28,7 @@ var app = express()
 require('./config/express')(app, config, passport)
 
 // Bootstrap routes
-require('./config/routes')(app, passport)
+require('./config/routes')(app, passport, auth)
 
 // Start the app by listening on <port>
 var port = process.env.PORT || 3000
