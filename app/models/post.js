@@ -21,6 +21,19 @@ var PostSchema = new Schema({
   }],
   tags: {type: [], get: getTags, set: setTags},
   createdAt  : {type : Date, default : Date.now}
-})
+});
+
+/**
+ * Validations
+ */
+
+PostSchema.path('title').validate(function (title) {
+  return title.length > 0
+}, 'Post title cannot be blank');
+
+PostSchema.path('body').validate(function (body) {
+  return body.length > 0
+}, 'Post body cannot be blank');
+
 
 mongoose.model('Post', PostSchema)
