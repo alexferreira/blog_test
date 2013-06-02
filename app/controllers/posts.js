@@ -33,8 +33,10 @@ exports.index = function(req, res){
           title: 'Lista de Posts',
           posts: posts,
           tags: req.tags,
+          user: req.user,
+          isAuthenticated: req.isAuthenticated(),
           page: page,
-          pages: count / perPage
+          pages: count / perPage,
         })
       })
     })
@@ -48,7 +50,10 @@ exports.show = function(req, res){
   res.render('posts/show', {
     title: req.post.title,
     post: req.post,
-    tags: req.tags
+    tags: req.tags,
+    user: req.user,
+    isAuthenticated: req.isAuthenticated(),
+    messages: req.flash('error')
   })
 }
 
