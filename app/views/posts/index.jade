@@ -11,11 +11,6 @@ block content
       span Posted by 
       = post.user.email
 
-    div
-      .pull-right.tags
-        if(post.tags)
-          each tag in post.tags.split(',')
-            a.label.label-info(href="/tags/"+tag) #{tag} 
     .row
       .span8.tags
         p
