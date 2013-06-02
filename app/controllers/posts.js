@@ -100,3 +100,47 @@ exports.update = function(req, res){
     }
   })
 }
+
+/**
+ * List of Posts
+ */
+
+exports.index = function(req, res){
+  var page = req.param('page') > 0 ? req.param('page') : 0
+  var perPage = 10
+  var options = {
+    perPage: perPage,
+    page: page
+  }
+
+  Post
+    .find({})
+    .populate('user', 'email')
+    .sort({'createdAt': -1}) // sort by date
+    .limit(options.perPage)
+    .skip(options.perPage * options.page)
+    .exec(function(err, posts) { 
+      if (err) return res.render('500')
+      Post.count().exec(function (err, count) {
+        res.render('posts/index', {
+          title: 'Lista de Posts',
+          posts: posts,
+          tags: req.tags,
+          page: page,
+          pages: count / perPage
+        })
+      })
+    })
+}
+
+/**
+ * Delete an post
+ */
+
+exports.destroy = function(req, res){
+  var post = req.post
+  post.remove(function(err){
+    req.flash('notice', 'Post deletado com sucesso')
+    res.redirect('/posts')
+  })
+}
