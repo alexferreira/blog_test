@@ -1,0 +1,38 @@
+extends ../layouts/default
+
+block content
+  each post in posts
+    h2 
+      a.title(href='/posts/'+post._id, title=post.title) 
+        = post.title
+        if(post.comments.length)
+          small.pull-right(data-toggle='tooltip', data-placement='top', title='Possui #{post.comments.length} Comentário(s)')
+            span
+              i.icon-comment
+              = post.comments.length
+        else
+          small.pull-right(data-toggle='tooltip', data-placement='top', title='Não Possui Comentários')
+            span
+              i.icon-comment
+              = post.comments.length
+
+    !=post.body
+
+    div
+      span Posted by 
+      = post.user.email
+
+    div
+      span.badge.badge-success
+        = formatDate(post.createdAt, "%b %d, %Y")
+      
+      .pull-right.tags
+        if(post.tags)
+          each tag in post.tags.split(',')
+            a.label.label-info(href="/tags/"+tag) #{tag} 
+    hr
+
+  if (pages > 1)
+    .pagination
+      ul
+        != createPagination(pages, page)
