@@ -3,18 +3,24 @@ var path = require('path')
 
 module.exports = {
   development: {
-    root: rootPath
+    root: rootPath,
     db: 'mongodb://localhost/BlogTestDev',
     app: {
       name: 'BlogTest'
     },
   },
   test: {
-    root: rootPath
+    root: rootPath,
     db: 'mongodb://localhost/BlogTestTest',
+    app: {
+      name: 'BlogTestTest'
+    },
   },
   production: {
-    root: rootPath
+    root: rootPath,
     db: 'mongodb://localhost/BlogTest',
+    app: {
+      name: 'BlogTestTest'
+    },
   }
 }
