@@ -3,16 +3,17 @@ extends ../layouts/default
 block main
   h1
     = post.title
-    small
-      form.form-inline.pull-right.confirm(action="/posts/"+post.id, method="post")
-        a.btn.btn-small(href='/posts/'+post._id+'/edit', title="edit") 
-          <i class="icon-edit"></i>
-          | Edit
-        &nbsp;
-        input(type="hidden", name="_method", value="DELETE")
-        button.btn.btn-danger.btn-small(type="submit") 
-          <i class="icon-trash icon-white"></i>
-          | delete
+    if (isAuthenticated && post.user.id == user.id)
+      small
+        form.form-inline.pull-right.confirm(action="/posts/"+post.id, method="post")
+          a.btn.btn-small(href='/posts/'+post._id+'/edit', title="edit") 
+            <i class="icon-edit"></i>
+            | Edit
+          &nbsp;
+          input(type="hidden", name="_method", value="DELETE")
+          button.btn.btn-danger.btn-small(type="submit") 
+            <i class="icon-trash icon-white"></i>
+            | delete
 
 block content
   .row
