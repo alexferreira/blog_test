@@ -1,0 +1,8 @@
+
+if (comment && comment.email)
+  .comment
+    strong= comment.email
+    |  :&nbsp;
+    != comment.body
+    br
+    span.label.label-info.pull-right=formatDatetime(comment.createdAt)
