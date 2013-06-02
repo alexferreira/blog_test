@@ -9,6 +9,65 @@ var mongoose = require('mongoose')
   , _ = require('underscore')
 
 /**
+ * List of Posts
+ */
+
+exports.index = function(req, res){
+  var page = req.param('page') > 0 ? req.param('page') : 0
+  var perPage = 10
+  var options = {
+    perPage: perPage,
+    page: page
+  }
+
+  Post
+    .find({})
+    .populate('user', 'email')
+    .sort({'createdAt': -1}) // sort by date
+    .limit(options.perPage)
+    .skip(options.perPage * options.page)
+    .exec(function(err, posts) { 
+      if (err) return res.render('500')
+      Post.count().exec(function (err, count) {
+        res.render('posts/index', {
+          title: 'Lista de Posts',
+          posts: posts,
+          tags: req.tags,
+          page: page,
+          pages: count / perPage
+        })
+      })
+    })
+}
+
+/**
+ * View an post
+ */
+
+exports.show = function(req, res){
+  res.render('posts/show', {
+    title: req.post.title,
+    post: req.post,
+    tags: req.tags
+  })
+}
+
+/**
+ * Find post by id
+ */
+
+exports.post = function(req, res, next, id){
+  var User = mongoose.model('User')
+  
+  Post.findOne({ _id : id }).populate('user', 'email').populate('comments.user').exec(function (err, post) { 
+    if (err) return next(err)
+    if (!post) return next(new Error('Failed to load post ' + id))
+    req.post = post
+    next()
+  })
+}
+
+/**
  * New post
  */
 
@@ -38,33 +97,6 @@ exports.create = function (req, res) {
     } else {
       res.redirect('/posts/'+post._id)
     }
-  })
-}
-
-/**
- * View an post
- */
-
-exports.show = function(req, res){
-  res.render('posts/show', {
-    title: req.post.title,
-    post: req.post,
-    tags: req.tags
-  })
-}
-
-/**
- * Find post by id
- */
-
-exports.post = function(req, res, next, id){
-  var User = mongoose.model('User')
-  
-  Post.findOne({ _id : id }).populate('user', 'email').populate('comments.user').exec(function (err, post) { 
-    if (err) return next(err)
-    if (!post) return next(new Error('Failed to load post ' + id))
-    req.post = post
-    next()
   })
 }
 
@@ -99,38 +131,6 @@ exports.update = function(req, res){
       res.redirect('/posts/'+post._id)
     }
   })
-}
-
-/**
- * List of Posts
- */
-
-exports.index = function(req, res){
-  var page = req.param('page') > 0 ? req.param('page') : 0
-  var perPage = 10
-  var options = {
-    perPage: perPage,
-    page: page
-  }
-
-  Post
-    .find({})
-    .populate('user', 'email')
-    .sort({'createdAt': -1}) // sort by date
-    .limit(options.perPage)
-    .skip(options.perPage * options.page)
-    .exec(function(err, posts) { 
-      if (err) return res.render('500')
-      Post.count().exec(function (err, count) {
-        res.render('posts/index', {
-          title: 'Lista de Posts',
-          posts: posts,
-          tags: req.tags,
-          page: page,
-          pages: count / perPage
-        })
-      })
-    })
 }
 
 /**
