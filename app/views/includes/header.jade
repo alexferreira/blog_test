@@ -1,0 +1,46 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.brand(href='/') Blog Test
+      .nav-collapse.collapse
+        ul.nav
+          li.active
+            a(href='/') Home
+          if (tags)
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  | Tags
+                  b.caret
+                ul.dropdown-menu
+                  each tag in tags
+                    li
+                      a(href="/tags/"+tag._id) 
+                        = tag._id
+                        .pull-right
+                          span.badge.badge-info= tag.value
+          li
+            a(href='/sobre') Sobre
+
+        if (isAuthenticated)
+          .pull-right
+            ul.nav.pull-right
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  | Bem Vindo, 
+                  = user.email
+                  |  
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    a(href='/profile')
+                      i.icon-cog
+                      | Profile
+                  li.divider
+                  li
+                    a(href='/logout')
+                      i.icon-off
+                      | Logout
