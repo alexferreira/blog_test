@@ -24,9 +24,10 @@ html
             ul.nav.nav-list
               li.nav-header Tags
                 li
-                  .tags        
-                    each tag in tags
-                      a.label.label-info(href="/tags/"+tag._id) #{tag._id}
+                  .tags
+                    if (tags)   
+                      each tag in tags
+                        a.label.label-info(href="/tags/"+tag._id) #{tag._id}
 
             label Textbox with search icon
             .input-append
