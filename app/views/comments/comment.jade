@@ -1,6 +1,12 @@
 
 if (comment && comment.email)
   .comment
+    if (isAuthenticated && post.user.id == user.id)
+      form.form-inline.pull-left.confirm(action="/posts/"+post.id+"/comments/"+comment.id, method="post")
+        input(type="hidden", name="_method", value="DELETE")
+        button.btn.btn-danger.btn-mini(type="submit") 
+          <i class="icon-trash icon-white"></i>
+      &nbsp;
     strong= comment.email
     |  :&nbsp;
     != comment.body
