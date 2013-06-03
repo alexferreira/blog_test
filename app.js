@@ -30,6 +30,9 @@ require('./config/express')(app, config, passport)
 // Bootstrap routes
 require('./config/routes')(app, passport, auth)
 
+// Helpers
+app.locals = require('./config/helpers');
+
 // Start the app by listening on <port>
 var port = process.env.PORT || 3000
 app.listen(port)
