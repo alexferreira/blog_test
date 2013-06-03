@@ -26,18 +26,18 @@ module.exports = function (app, passport, auth) {
   app.get('/posts', posts.index)
   app.get('/posts/new', auth.requiresLogin, posts.new)
   app.post('/posts', auth.requiresLogin, posts.create)
-  app.get('/posts/:id', posts.show)
-  app.get('/posts/:id/edit', auth.requiresLogin, auth.post.hasAuthorization, posts.edit)
-  app.put('/posts/:id', auth.requiresLogin, auth.post.hasAuthorization, posts.update)
-  app.del('/posts/:id', auth.requiresLogin, auth.post.hasAuthorization, posts.destroy)
+  app.get('/posts/:slug', posts.show)
+  app.get('/posts/:slug/edit', auth.requiresLogin, auth.post.hasAuthorization, posts.edit)
+  app.put('/posts/:slug', auth.requiresLogin, auth.post.hasAuthorization, posts.update)
+  app.del('/posts/:slug', auth.requiresLogin, auth.post.hasAuthorization, posts.destroy)
 
-  app.param('id', posts.post)
+  app.param('slug', posts.post)
   
   app.get('/', posts.index)
 
   // comment routes
-  app.post('/posts/:id/comments', comments.create)
-  app.del('/posts/:id/comments/:comment_id', auth.requiresLogin, auth.post.hasAuthorization, comments.destroy)
+  app.post('/posts/:slug/comments', comments.create)
+  app.del('/posts/:slug/comments/:comment_id', auth.requiresLogin, auth.post.hasAuthorization, comments.destroy)
 
   // tag routes
   app.get('/tags/:tag', tags.filter)
