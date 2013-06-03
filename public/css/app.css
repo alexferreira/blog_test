@@ -56,3 +56,11 @@ a.title:hover{
   border-bottom: 1px solid;
   text-decoration: none;
 }
+
+form.form-search{
+  margin: 0;
+}
+
+input.buscar{
+  width: 100%;
+}
