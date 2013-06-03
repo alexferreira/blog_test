@@ -73,6 +73,20 @@ PostSchema.methods = {
     })
 
     this.save(cb)
+  },
+
+  /**
+   * Del comment
+   *
+   * @param {ObjectId} id
+   * @param {Function} cb
+   * @api private
+   */
+
+  delComment: function (id, cb) {
+    this.comments = this.comments.filter(function(el) { return el._id != id; });
+
+    this.save(cb)
   }
 
 }
