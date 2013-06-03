@@ -5,6 +5,7 @@
 
 var mongoose = require('mongoose')
   , Schema = mongoose.Schema
+  , friendly = require('mongoose-friendly');
 
 /**
  * Getters
@@ -38,6 +39,12 @@ var PostSchema = new Schema({
   tags: {type: [], get: getTags, set: setTags},
   createdAt  : {type : Date, default : Date.now}
 });
+
+/**
+ * Plugins
+ */
+
+PostSchema.plugin(friendly)
 
 /**
  * Validations
