@@ -37,6 +37,7 @@ module.exports = function (app, passport, auth) {
 
   // comment routes
   app.post('/posts/:id/comments', comments.create)
+  app.del('/posts/:id/comments/:comment_id', auth.requiresLogin, auth.post.hasAuthorization, comments.destroy)
 
   // tag routes
   app.get('/tags/:tag', tags.filter)
