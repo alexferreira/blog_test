@@ -23,3 +23,16 @@ exports.create = function (req, res) {
     res.redirect('/posts/'+ post.id)
   })
 }
+
+/**
+ * Delete an comment
+ */
+
+exports.destroy = function(req, res){
+  var post = req.post
+  
+  post.delComment(req.params.comment_id, function (err) {
+    if (err) return res.render('500')
+    res.redirect('/posts/'+ post.id)
+  })
+}
