@@ -64,7 +64,7 @@ exports.list = function (req, res, next) {
   o.out = { replace: 'tags' }
   o.verbose = true;
   Post.mapReduce(o, function (err, model, stats) {
-    console.log('map reduce took %d ms', stats.processtime)
+    // console.log('map reduce took %d ms', stats.processtime)
     model.find().exec(function (err, tags) {
       req.tags = tags
       next()
