@@ -13,6 +13,7 @@
   "dependencies": {
     "express": "3.2.5",
     "mongoose": "3.6.11",
+    "mongoose-friendly": "0.1.2",
     "connect-mongo": "0.3.2",
     "connect-flash": "0.1.1",
     "async": "0.2.9",
