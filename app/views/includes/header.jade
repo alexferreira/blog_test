@@ -8,22 +8,27 @@
       a.brand(href='/') Blog Test
       .nav-collapse.collapse
         ul.nav
-          li.active
-            a(href='/') Home
+          li
+            a(href='/') 
+              i.icon-home
+              | Home
           if (tags)
             li.dropdown
               a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  i.icon-tags
                   | Tags
                   b.caret
                 ul.dropdown-menu
                   each tag in tags
                     li
-                      a(href="/tags/"+tag._id) 
+                      a(href="/tags/"+tag._id)
                         = tag._id
                         .pull-right
                           span.badge.badge-info= tag.value
           li
-            a(href='/sobre') Sobre
+            a(href='/sobre') 
+              i.icon-search
+              | Sobre
 
         if (isAuthenticated)
           .pull-right
