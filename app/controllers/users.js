@@ -5,6 +5,7 @@
 
 var mongoose = require('mongoose')
   , User = mongoose.model('User')
+  , _ = require('underscore');
 
 /**
  * Show sign up form
@@ -75,6 +76,36 @@ exports.show = function (req, res) {
     title: user.email,
     user: user,
     tags: req.tags
+  })
+}
+
+/**
+ * Edit user
+ */
+
+exports.edit = function (req, res) {
+  var user = req.user
+  res.render('users/edit', {
+    title: user.email,
+    user: user,
+    tags: req.tags,
+    userId: user.id,
+    message: {}
+  })
+}
+
+/**
+ * Update password
+ */
+
+exports.update = function(req, res){
+  var user = req.user
+  user = _.extend(user, req.body)
+  user.save(function (err) {
+    if (err) return next(err)
+    req.logout()
+    req.flash('error', 'Senha atualizada com sucesso')
+    res.redirect('/login')
   })
 }
 
