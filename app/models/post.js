@@ -37,7 +37,8 @@ var PostSchema = new Schema({
     createdAt: { type : Date, default : Date.now }
   }],
   tags: {type: [], get: getTags, set: setTags},
-  createdAt  : {type : Date, default : Date.now}
+  createdAt  : {type : Date, default : Date.now},
+  updateAt  : {type : Date, default : Date.now}
 });
 
 /**
