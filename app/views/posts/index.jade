@@ -4,14 +4,10 @@ block content
   if (posts.length)
     each post in posts
       h3 
-        a.title(href='/posts/'+post._id, title=post.title)= post.title
+        a.title(href='/posts/'+post.slug, title=post.title)= post.title
 
-      !=post.body
-
-      div
-        span Posted by 
-        = post.user.email
-
+      !=truncate(post.body, 600)
+      
       .row
         .span8.tags
           p
