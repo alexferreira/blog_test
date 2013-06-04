@@ -18,9 +18,9 @@ module.exports = {
   },
   production: {
     root: rootPath,
-    db: 'mongodb://localhost/BlogTest',
+    db: 'mongodb://10.252.78.112/BlogTest',
     app: {
-      name: 'BlogTestTest'
+      name: 'BlogTest'
     },
   }
 }
