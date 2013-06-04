@@ -1,0 +1,21 @@
+extends ../layouts/default
+
+block main
+  h2 
+    Alterar senha para: 
+    small=user.email
+
+block content
+  form.form-horizontal(action='/users/'+userId, method='POST')
+    input(type="hidden", name="_method", value="PUT")
+    if (message.length)
+      .fade.in.alert.alert-block.alert-error
+        a.close(data-dismiss="alert", href="javascript:void(0)") x
+        = message
+    .control-group.offset2
+      label.control-label(for='password') Password
+      .controls
+        input#password.input-xlarge(type='password', name='password', placeholder='')
+    .control-group.offset2
+      .controls
+        button.btn.btn-success Entrar
