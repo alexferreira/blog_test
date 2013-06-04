@@ -7,7 +7,8 @@ var async = require('async')
   , users = require('../app/controllers/users')
   , tags = require('../app/controllers/tags')
   , posts = require('../app/controllers/posts')
-  , comments = require('../app/controllers/comments');
+  , comments = require('../app/controllers/comments')
+  , pages = require('../app/controllers/pages');
 
 module.exports = function (app, passport, auth) {
   app.get('*', tags.list)
@@ -41,4 +42,7 @@ module.exports = function (app, passport, auth) {
 
   // tag routes
   app.get('/tags/:tag', tags.filter)
+
+  //
+  app.get('/sobre', pages.about)
 }
