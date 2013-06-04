@@ -128,7 +128,7 @@ exports.edit = function (req, res) {
 exports.update = function(req, res){
   var post = req.post
   post = _.extend(post, req.body)
-
+  post.updateAt = Date.now();
   post.save(function (err) {
     if (err) {
       res.render('posts/edit', {
