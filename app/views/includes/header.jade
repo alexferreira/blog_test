@@ -25,10 +25,20 @@
                         = tag._id
                         .pull-right
                           span.badge.badge-info= tag.value
+
+          li.icon.github
+            a(href='https://github.com/alexferreira/blog_test')
+              img(src='/img/github.png', width='16', height='16')
+              | Ver no Github
+          li.icon.bug
+            a(href='https://github.com/alexferreira/blog_test/issues')
+              img(src='/img/bug.png', width='20', height='18')
+              | Lista de Bugs
           li
             a(href='/sobre') 
               i.icon-search
               | Sobre
+
 
         if (isAuthenticated)
           .pull-right
