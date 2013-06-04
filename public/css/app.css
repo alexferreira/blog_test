@@ -64,3 +64,15 @@ form.form-search{
 input.buscar{
   width: 100%;
 }
+
+.nav > li > a > i{
+  opacity: 0.6;
+}
+
+.nav > li > a:hover > i{
+  opacity: 1;
+}
+
+.block {
+  display: block;
+}
