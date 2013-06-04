@@ -11,29 +11,20 @@ html
         .span3
           .well.sidebar-nav
             ul.nav.nav-list
-              li.nav-header Main
-                li.active
-                  a(href='/')
-                    i.icon-home
-                    | Home
+              li.nav-header Buscar
                 li
-                  a(href='/posts/new')
-                    i.icon-edit
-                    | Adicionar post
-
-            ul.nav.nav-list
+                  form.form-search(method="get", action="/")
+                    .input-append
+                      input.buscar(type='text', name='q')
+                      span.add-on
+                        i.icon-search
+                  p Busca apenas nos titulos
               li.nav-header Tags
                 li
                   .tags
                     if (tags)   
                       each tag in tags
                         a.label.label-info(href="/tags/"+tag._id) #{tag._id}
-
-            label Textbox with search icon
-            .input-append
-              input(type='text', name='')
-              span.add-on
-                i.icon-search
 
       hr
       include ../includes/footer
