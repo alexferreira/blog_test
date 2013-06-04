@@ -21,6 +21,8 @@ exports.index = function(req, res){
   }
   var regex = new RegExp(req.query.q, 'i');
   var search = req.query.q ? {title: regex}: {}
+
+  var q = req.query.q ? req.query.q.replace('+', ' ') : false
   Post
     .find(search)
     .populate('user', 'email')
@@ -37,6 +39,7 @@ exports.index = function(req, res){
           user: req.user,
           isAuthenticated: req.isAuthenticated(),
           page: page,
+          q: q,
           pages: count / perPage,
         })
       })
