@@ -1,11 +1,14 @@
 extends ../layouts/default
 
 block content
+  if(q)
+    h2 
+      | Buscando por: 
+      small=q
   if (posts.length)
     each post in posts
       h3 
         a.title(href='/posts/'+post.slug, title=post.title)= post.title
-
       !=truncate(post.body, 600)
       
       .row
