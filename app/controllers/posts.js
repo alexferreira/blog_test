@@ -19,9 +19,10 @@ exports.index = function(req, res){
     perPage: perPage,
     page: page
   }
-
+  var regex = new RegExp(req.query.q, 'i');
+  var search = req.query.q ? {title: regex}: {}
   Post
-    .find({})
+    .find(search)
     .populate('user', 'email')
     .sort({'createdAt': -1}) // sort by date
     .limit(options.perPage)
