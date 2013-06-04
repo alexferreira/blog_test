@@ -26,7 +26,7 @@ exports.index = function(req, res){
   Post
     .find(search)
     .populate('user', 'email')
-    .sort({'createdAt': -1}) // sort by date
+    .sort({'updateAt': -1}) // sort by date
     .limit(options.perPage)
     .skip(options.perPage * options.page)
     .exec(function(err, posts) { 
