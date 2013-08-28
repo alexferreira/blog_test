@@ -34,7 +34,7 @@ require('./config/routes')(app, passport, auth)
 app.locals = require('./config/helpers');
 
 // Start the app by listening on <port>
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 10000
 app.listen(port)
 console.log('Express app started on port '+port)
 
